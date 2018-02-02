@@ -22,7 +22,8 @@ app.use(
     origin: CLIENT_ORIGIN
   })
 );
-
+//use enqueue and dequeue to add/remove 
+//use res json with the peek method
 app.get('/api/cat', (req, res) => {
   res.status(200).json(catData);
 });
