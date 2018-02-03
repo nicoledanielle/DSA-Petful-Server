@@ -1,5 +1,53 @@
 'use strict';
 
+class _Node {
+  constructor(data) {
+    this.data = data;
+    this.next = null;
+    this.prev = null;
+  }
+}
+
+class Queue {
+  constructor() {
+    this.first = null;
+    this.last = null;
+  }
+
+  enqueue(data) {
+    const pet = new _Node(data);
+    if (this.first === null) {
+      this.first = pet;
+    }
+    if(this.last) {
+      pet.next = this.last;
+      this.last.prev = pet;
+    }
+    this.last = pet;
+  }
+
+  dequeue() {
+    if (this.first === null) {
+      return;
+    }
+    const pet = this.first;
+    this.first = pet.prev;
+    if (pet === this.last) {
+      this.last = null;
+    }
+    return pet.data;
+  }
+}
+
+let catQueue = new Queue();
+let dogQueue = new Queue();
+
+const peek = queue => {
+  if(queue.first) {
+    return queue.first.data;
+  }
+};
+
 let catData = [{
   imageURL:'https://assets3.thrillist.com/v1/image/2622128/size/tmg-slideshow_l.jpg',
   imageDescription: 'Orange bengal cat with black stripes lounging on concrete.',
@@ -57,4 +105,4 @@ let dogData = [{
   story: 'Owner moved. Mr. Woo is an instagram model and comes with his own handle!'
 }];
 
-module.exports = { catData, dogData };
+module.exports = { catData, dogData, catQueue, dogQueue, peek };
