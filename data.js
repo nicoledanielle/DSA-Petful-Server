@@ -39,17 +39,7 @@ class Queue {
   }
 }
 
-let catQueue = new Queue();
-catQueue.enqueue(catData[0]);
-catQueue.enqueue(catData[1]);
-catQueue.enqueue(catData[2]);
-
-let dogQueue = new Queue();
-dogQueue.enqueue(dogData[0]);
-dogQueue.enqueue(dogData[1]);
-dogQueue.enqueue(dogData[2]);
-
-const peek = queue => {
+const peek = (queue) => {
   if(queue.first) {
     return queue.first.data;
   }
@@ -111,5 +101,16 @@ let dogData = [{
   breed: 'Brussels Griffon',
   story: 'Owner moved. Mr. Woo is an instagram model and comes with his own handle!'
 }];
+
+let catQueue = new Queue();
+catQueue.enqueue(catData[0]);
+catQueue.enqueue(catData[1]);
+catQueue.enqueue(catData[2]);
+console.log(peek(catQueue));
+
+let dogQueue = new Queue();
+dogQueue.enqueue(dogData[0]);
+dogQueue.enqueue(dogData[1]);
+dogQueue.enqueue(dogData[2]);
 
 module.exports = { catData, dogData, catQueue, dogQueue, peek };

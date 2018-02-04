@@ -4,7 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 
-const {catData, dogData, catQueue, dogQueue, peek} = require ('./data');
+const {catQueue, dogQueue, peek} = require ('./data');
 const {PORT, CLIENT_ORIGIN} = require('./config');
 const {dbConnect} = require('./db-mongoose');
 
@@ -21,12 +21,12 @@ app.use(
     origin: CLIENT_ORIGIN
   })
 );
-//use enqueue and dequeue to add/remove 
-//use res json with the peek method
+
+
 app.get('/api/cat', (req, res) => {
   const empty = 'Sorry, all cats have already been adopted!';
   if(peek(catQueue)){
-    res.status(200).json(catQueue.first.value);
+    res.status(200).json(peek(catQueue));
   }
   else{
     res.json({empty});
@@ -36,7 +36,7 @@ app.get('/api/cat', (req, res) => {
 app.get('/api/dog', (req, res) => {
   const empty = 'Sorry, all dogs have already been adopted!';
   if(peek(dogQueue)){
-    res.status(200).json(dogQueue.first.value);
+    res.status(200).json(peek(dogQueue));
   }
   else{
     res.json({empty});
